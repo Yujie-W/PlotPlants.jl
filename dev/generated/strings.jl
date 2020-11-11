@@ -1,3 +1,4 @@
+# load packages
 using PlotPlants
 
 for str in [latex_symbol("G"),

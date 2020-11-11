@@ -1,3 +1,4 @@
+# load packages
 using PlotPlants
 
 xs = rand(10) .* 10;

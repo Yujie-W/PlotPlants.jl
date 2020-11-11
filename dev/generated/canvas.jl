@@ -1,3 +1,4 @@
+# load packages
 using PlotPlants
 
 _fig,_axes = create_canvas("1X1 figure");

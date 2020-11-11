@@ -1,3 +1,4 @@
+# load packages
 using Pkg.Artifacts
 using PlotPlants
 
@@ -24,6 +25,7 @@ _fig
 artifact_toml = joinpath(@__DIR__, "../../../Artifacts.toml");
 data_hash     = artifact_hash("leaf_area_index_4X_1M", artifact_toml);
 data_path     = artifact_path(data_hash) * "/leaf_area_index_4X_1M.nc";
+ensure_artifact_installed("leaf_area_index_4X_1M", artifact_toml);
 
 _fig,_axes = create_canvas("Preview 3D dataset");
 _ax1 = _axes[1];
@@ -34,6 +36,7 @@ _fig
 artifact_toml = joinpath(@__DIR__, "../../../Artifacts.toml");
 data_hash     = artifact_hash("canopy_height_20X_1Y", artifact_toml);
 data_path     = artifact_path(data_hash) * "/canopy_height_20X_1Y.nc";
+ensure_artifact_installed("canopy_height_20X_1Y", artifact_toml);
 
 _fig,_axes = create_canvas("Preview 2D dataset");
 _ax1 = _axes[1];
