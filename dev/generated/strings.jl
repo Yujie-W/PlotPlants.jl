@@ -33,9 +33,6 @@ end
 use_sans();
 use_serif();
 
-use_tex();
-use_text();
-
 use_sans_tex();
 use_sans_text();
 use_serif_tex();
