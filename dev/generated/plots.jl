@@ -4,18 +4,19 @@ using PlotPlants
 
 _fig,_axes = create_canvas("Ellipse");
 _ax1 = _axes[1];
-plot_ellipse(_ax1, (0,0))
-plot_ellipse(_ax1, (12,0); width=20, height=8, angle=45, color="c", alpha=0.3);
-plot_ellipse(_ax1, (34,0); width=20, height=8, angle=15, edgecolor="r",
-             facecolor="c", alpha=0.8);
+plot_ellipse!(_ax1, (0,0))
+plot_ellipse!(_ax1, (12,0); width=20, height=8, angle=45, color="c",
+              alpha=0.3);
+plot_ellipse!(_ax1, (34,0); width=20, height=8, angle=15, edgecolor="r",
+              facecolor="c", alpha=0.8);
 _ax1.set_xlim(-11,45);
 _ax1.set_ylim(-11,45);
 _fig
 
 _fig,_axes = create_canvas("Stoma");
 _ax1 = _axes[1];
-plot_stoma(_ax1, (0,0));
-plot_stoma(_ax1, (10,0); width=12, height=20, stoma=0.5, angle=15)
+plot_stoma!(_ax1, (0,0));
+plot_stoma!(_ax1, (10,0); width=12, height=20, stoma=0.5, angle=15)
 _ax1.set_xlim(-11,17);
 _ax1.set_ylim(-11,17);
 _fig
@@ -29,7 +30,7 @@ ensure_artifact_installed("LAI_4X_1M_V1", artifact_toml);
 
 _fig,_axes = create_canvas("Preview 3D dataset");
 _ax1 = _axes[1];
-preview_dataset(_ax1, data_path, "LAI");
+preview_dataset!(_ax1, data_path, "LAI");
 _fig
 
 # canopy height dataset, variable name: Band1
@@ -40,7 +41,7 @@ ensure_artifact_installed("CH_20X_1Y_V1", artifact_toml);
 
 _fig,_axes = create_canvas("Preview 2D dataset");
 _ax1 = _axes[1];
-preview_dataset(_ax1, data_path, "Band1");
+preview_dataset!(_ax1, data_path, "Band1");
 _fig
 
 artifact_toml = joinpath(@__DIR__, "../../../Artifacts.toml");
@@ -51,7 +52,7 @@ ensure_artifact_installed("CH_20X_1Y_V1", artifact_toml);
 @info "Expecting a warning and thus a blank figure here!";
 _fig,_axes = create_canvas("Expecting a warning");
 _ax1 = _axes[1];
-preview_dataset(_ax1, data_path, 1);
+preview_dataset!(_ax1, data_path, 1);
 _fig
 
 xs = collect(1:100);
@@ -61,9 +62,9 @@ y2 = xs .* 0.01 .+ rand(100) .+ 2;
 _fig,_axes = create_canvas("Linear regression");
 _ax1 = _axes[1];
 _ax1.plot(xs, y1, "ro", alpha=0.2);
-plot_line_regress(_ax1, xs, y1);
+plot_line_regress!(_ax1, xs, y1);
 _ax1.plot(xs, y2, "co", alpha=0.2);
-plot_line_regress(_ax1, xs, y2; color="c");
+plot_line_regress!(_ax1, xs, y2; color="c");
 _fig
 
 xs = collect(1:100);
@@ -72,7 +73,7 @@ ys = xs .* 0.01 .+ rand(100) .+ 2;
 _fig,_axes = create_canvas("Force intercept = 0");
 _ax1 = _axes[1];
 _ax1.plot(xs, ys, "ro", alpha=0.2);
-plot_line_regress(_ax1, xs, ys; intercept=false);
+plot_line_regress!(_ax1, xs, ys; intercept=false);
 _fig
 
 xs = collect(1:100);
@@ -81,7 +82,7 @@ ys = xs .* 0.01 .+ rand(100) .+ 2;
 _fig,_axes = create_canvas("Plot confidence interval");
 _ax1 = _axes[1];
 _ax1.plot(xs, ys, "ko", alpha=0.2);
-plot_line_regress(_ax1, xs, ys; interval=true);
+plot_line_regress!(_ax1, xs, ys; interval=true);
 _fig
 
 xs = [rand(100); rand(100).* 0.5; rand(100).* 0.2; rand(100).* 0.1];
@@ -89,7 +90,7 @@ ys = [rand(100); rand(100).* 0.5; rand(100).* 0.2; rand(100).* 0.1];
 
 _fig,_axes = create_canvas("Plot confidence interval");
 _ax1 = _axes[1];
-plot_density(_ax1, xs, ys; cmap="viridis", markersize=10);
+plot_density!(_ax1, xs, ys; cmap="viridis", markersize=10);
 _fig
 
 xs = [rand(100); rand(100).* 0.5; rand(100).* 0.2; rand(100).* 0.1];
@@ -97,7 +98,7 @@ ys = [rand(100); rand(100).* 0.5; rand(100).* 0.2; rand(100).* 0.1];
 
 _fig,_axes = create_canvas("Set maximal density limit");
 _ax1 = _axes[1];
-plot_density(_ax1, xs, ys; cmap="viridis", markersize=10, dmax=1);
+plot_density!(_ax1, xs, ys; cmap="viridis", markersize=10, dmax=1);
 _fig
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
