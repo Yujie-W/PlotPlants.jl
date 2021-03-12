@@ -29,16 +29,5 @@ calculate_density(xs,ys);
 # the density will be calculated using 4 threads
 calculate_density(xs,ys,4);
 
-@show nanmean(xs);
-@show nanstd(xs);
-@show nanmax(xs);
-@show nanmin(xs);
-
-obsd = rand(100);
-pred = rand(100);
-@show mae(obsd, pred);
-@show mape(obsd, pred);
-@show rmse(obsd, pred);
-
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
 
