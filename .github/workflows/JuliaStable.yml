@@ -28,7 +28,7 @@ jobs:
       - name: Install Dependencies for Mac-OS
         if: runner.os == 'macOS'
         run: |
-          julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("matplotlib");'
+          julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("matplotlib");Conda.rm("mkl");Conda.add("nomkl");'
           brew install libpng
           ls /usr/local/Cellar/freetype/2.10.4/lib/
           cp /usr/local/Cellar/freetype/2.10.4/lib/libfreetype.dylib /Users/runner/.julia/conda/3/lib/
