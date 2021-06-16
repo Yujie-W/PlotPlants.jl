@@ -6,7 +6,6 @@ on:
       - staging
       - trying
   pull_request:
-
 jobs:
   test:
     name: ${{ matrix.os }}
@@ -15,9 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
           - macos-latest
-          - windows-latest
     steps:
       - name: Set up Actions
         uses: actions/checkout@v1
@@ -28,8 +25,16 @@ jobs:
       - name: Install Dependencies for Linux
         if: runner.os == 'Linux'
         run: julia --project -e 'ENV["PYTHON"]=""; using Pkg; Pkg.instantiate();'
-      - name: Install Dependencies for Windows and Mac-OS
-        if: runner.os != 'Linux'
+      - name: Install Dependencies for Mac-OS
+        if: runner.os == 'macOS'
+        run: |
+          julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("matplotlib"); Conda.add("nomkl");'
+          brew install libpng
+          ls /usr/local/Cellar/freetype/2.10.4/lib/
+          cp /usr/local/Cellar/freetype/2.10.4/lib/libfreetype.dylib /Users/runner/.julia/conda/3/lib/
+          julia --project -e 'using Pkg; Pkg.instantiate();'
+      - name: Install Dependencies for Windows
+        if: runner.os == 'Windows'
         run: julia --project -e 'using Pkg; Pkg.instantiate();'
       - name: Run Tests
         uses: julia-actions/julia-runtest@latest
