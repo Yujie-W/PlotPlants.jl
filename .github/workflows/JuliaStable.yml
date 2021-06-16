@@ -31,5 +31,5 @@ jobs:
       - name: Mac-OS Conda Info
         run: |
           conda info
-          ls /Users/runner/
+          ls /usr/local/miniconda
 
