@@ -36,7 +36,7 @@ jobs:
         run: |
           brew install libpng
           ls /usr/local/Cellar/freetype/2.10.4/lib/
-          cp /usr/local/Cellar/freetype/2.10.4/lib/libfreetype.dylib /usr/local/miniconda/lib/
+          cp /usr/local/Cellar/freetype/2.10.4/lib/libfreetype.dylib /Users/runner/.julia/conda/3/lib/
           julia --project -e 'using Pkg; Pkg.instantiate();'
       - name: Install Dependencies for Windows
         if: runner.os == 'Windows'
