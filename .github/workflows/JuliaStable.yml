@@ -36,7 +36,9 @@ jobs:
           python-version: '3.7'
       - name: Mac-OS Conda Info
         if: runner.os == 'macOS'
-        run: conda info
+        run: |
+          conda info
+          ls /usr/local/miniconda/condabin/
       - name: Install Dependencies for Mac-OS
         if: runner.os == 'macOS'
         run: julia --project -e 'using Pkg; Pkg.instantiate();'
