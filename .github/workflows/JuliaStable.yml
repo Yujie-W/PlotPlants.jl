@@ -14,9 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
           - macos-latest
-          - windows-latest
     steps:
       - name: Set up Actions
         uses: actions/checkout@v1
@@ -36,10 +34,10 @@ jobs:
       - name: Install Dependencies for Mac-OS
         if: runner.os == 'macOS'
         run: |
-          conda info
-          conda install matplotlib libpng
-          conda upgrade freetype
-          julia --project -e 'ENV["PYTHON"]="/usr/local/miniconda/bin/python3.8"; using Pkg; Pkg.instantiate();'
+          brew install libpng
+          ls /usr/local/Cellar/freetype/2.10.4/lib/
+          cp /usr/local/Cellar/freetype/2.10.4/lib/libfreetype.dylib /usr/local/miniconda/lib/
+          julia --project -e 'using Pkg; Pkg.instantiate();'
       - name: Install Dependencies for Windows
         if: runner.os == 'Windows'
         run: julia --project -e 'using Pkg; Pkg.instantiate();'
