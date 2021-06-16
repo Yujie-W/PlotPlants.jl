@@ -33,14 +33,13 @@ jobs:
         with: 
           auto-update-conda: true
           python-version: '3.8'
-      - name: Mac-OS Conda Info
+      - name: Install Dependencies for Mac-OS
         if: runner.os == 'macOS'
         run: |
           conda info
           conda install matplotlib libpng
-      - name: Install Dependencies for Mac-OS
-        if: runner.os == 'macOS'
-        run: julia --project -e 'ENV["PYTHON"]="/usr/local/miniconda/bin/python3.8"; using Pkg; Pkg.instantiate();'
+          conda upgrade freetype
+          julia --project -e 'ENV["PYTHON"]="/usr/local/miniconda/bin/python3.8"; using Pkg; Pkg.instantiate();'
       - name: Install Dependencies for Windows
         if: runner.os == 'Windows'
         run: julia --project -e 'using Pkg; Pkg.instantiate();'
